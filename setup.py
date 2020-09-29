@@ -19,7 +19,11 @@ setuptools.setup(
     packages=setuptools.find_packages(where="hello_step_functions"),
 
     install_requires=[
-        "aws-cdk.core==1.64.1",
+        "aws-cdk.core>=1.64.1",
+        'aws-cdk.aws_stepfunctions',
+        'aws-cdk.aws_stepfunctions_tasks',
+        'aws-cdk.aws_lambda',
+        'aws-cdk.aws_lambda_python'
     ],
 
     python_requires=">=3.6",
