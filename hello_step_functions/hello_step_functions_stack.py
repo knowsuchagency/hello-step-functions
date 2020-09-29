@@ -12,21 +12,21 @@ class HelloStepFunctionsStack(core.Stack):
         submit_lambda = aws_lambda_python.PythonFunction(
             self,
             'submit-status',
-            entry='./lambdas/foo',
+            entry='./lambdas/example',
             handler='submit_status'
         )
 
         get_status_lambda = aws_lambda_python.PythonFunction(
             self,
             'get-status',
-            entry='./lambdas/foo',
+            entry='./lambdas/example',
             handler='get_status'
         )
 
         final_status_lambda = aws_lambda_python.PythonFunction(
             self,
             'final-status',
-            entry='./lambdas/foo',
+            entry='./lambdas/example',
             handler='final_status'
         )
 
