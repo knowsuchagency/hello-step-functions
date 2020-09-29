@@ -1,5 +1,7 @@
 
-# Welcome to your CDK Python project!
+# Python Step Function Example
+
+![screenshot](screenshot.png)
 
 This is a blank project for Python development with CDK.
 
