@@ -10,8 +10,8 @@ def submit_status(event, context):
 
 def get_status(event, context):
     return {
+        **event,
         "status": random.choice(["FAILED", "PROCESSING", "SUCCEEDED"]),
-        "data": event["data"],
     }
 
 
