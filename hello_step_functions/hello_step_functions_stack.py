@@ -11,30 +11,24 @@ class HelloStepFunctionsStack(core.Stack):
 
         submit_lambda = aws_lambda_python.PythonFunction(
             self,
-            'submit-status',
-            entry='./lambdas/example',
-            handler='submit_status'
+            "submit-status",
+            entry="./lambdas/example",
+            handler="submit_status",
         )
 
         get_status_lambda = aws_lambda_python.PythonFunction(
-            self,
-            'get-status',
-            entry='./lambdas/example',
-            handler='get_status'
+            self, "get-status", entry="./lambdas/example", handler="get_status"
         )
 
         final_status_lambda = aws_lambda_python.PythonFunction(
-            self,
-            'final-status',
-            entry='./lambdas/example',
-            handler='final_status'
+            self, "final-status", entry="./lambdas/example", handler="final_status"
         )
 
         submit_job = tasks.LambdaInvoke(
             self,
             "Submit Job",
             lambda_function=submit_lambda,
-            output_path="$.Payload",
+            payload_response_only=True,
         )
 
         wait_x = sfn.Wait(
@@ -45,7 +39,7 @@ class HelloStepFunctionsStack(core.Stack):
             self,
             "Get Job Status",
             lambda_function=get_status_lambda,
-            output_path="$.Payload",
+            payload_response_only=True,
         )
 
         job_failed = sfn.Fail(
@@ -59,7 +53,7 @@ class HelloStepFunctionsStack(core.Stack):
             self,
             "Get Final Job Status",
             lambda_function=final_status_lambda,
-            output_path="$.Payload",
+            payload_response_only=True,
         )
 
         definition = (
@@ -76,5 +70,8 @@ class HelloStepFunctionsStack(core.Stack):
         )
 
         sfn.StateMachine(
-            self, "StateMachine", definition=definition, timeout=core.Duration.minutes(5)
+            self,
+            "StateMachine",
+            definition=definition,
+            timeout=core.Duration.minutes(5),
         )
